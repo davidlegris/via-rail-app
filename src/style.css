@@ -1,0 +1,287 @@
+@import '@arcgis/core/assets/esri/themes/light/main.css';
+
+html,
+body,
+#viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    position: relative;
+}
+
+/* Remove focus outline from the map container and all its children */
+#viewDiv:focus,
+#viewDiv:focus-visible,
+#viewDiv *:focus,
+#viewDiv *:focus-visible {
+    outline: none !important;
+    outline-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Target ArcGIS specific elements */
+.esri-view,
+.esri-view-surface,
+.esri-view-surface--inset-outline,
+.esri-view-surface--touch,
+.esri-view-surface--touch:focus,
+.esri-view-surface--touch:focus-visible {
+    outline: none !important;
+    outline-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Additional rule for when the map is focused via our JavaScript */
+body.map-focused #viewDiv,
+body.map-focused .esri-view,
+body.map-focused .esri-view-surface,
+body.map-focused .esri-view-surface--inset-outline,
+body.map-focused .esri-view-surface--touch {
+    outline: none !important;
+    outline-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Target the specific ArcGIS view surface element */
+.esri-view-surface--inset-outline:focus,
+.esri-view-surface--inset-outline:focus-visible {
+    outline: none !important;
+    outline-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Header title container styling */
+#header-title-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex: 1 !important;
+    gap: 10px !important;
+    margin-left: 4% !important;
+}
+
+/* Header subtitle styling */
+#header-subtitle {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    text-align: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 16px !important;
+    color: #333 !important;
+    font-weight: normal !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    pointer-events: none !important; /* Allow clicks to pass through to elements below */
+}
+
+/* Header logo styling */
+#header-logo {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    z-index: 1000 !important; /* Ensure it's above other elements */
+}
+
+#header-logo-img {
+    height: 55px !important; /* Increased height to make it larger */
+    width: auto !important; /* Maintain aspect ratio */
+    object-fit: contain !important;
+    margin-top: -10px !important; /* Move it up to extend beyond header top */
+    margin-bottom: -10px !important; /* Move it down to extend beyond header bottom */
+}
+
+/* More specific selector to ensure our styles take precedence */
+html body #header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 60px !important;
+    background-color: #ffffff !important; /* White background */
+    border-bottom: 1px solid #ccc !important; /* Subtle border */
+    display: flex !important;
+    align-items: center !important; /* Vertically center all items */
+    justify-content: space-between !important; /* Space between title and search */
+    padding: 0 20px !important;
+    z-index: 999 !important; /* Very high z-index to ensure it's on top */
+    box-sizing: border-box !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important; /* Shadow effect */
+}
+
+html body #header-title {
+    margin: 0 !important;
+    font-size: 24px !important; /* Larger font size */
+    font-weight: bold !important; /* Make it bold */
+    color: #0079C2 !important; /* Blue text color */
+    display: flex !important;
+    align-items: center !important; /* Vertically center the text */
+    height: 100% !important; /* Take full height of parent */
+    text-align: center !important; /* Center the text */
+}
+
+html body #header-search {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#search-input {
+    padding: 6px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    min-width: 200px;
+    height: 22px;
+    background-color: white;
+    display: none;
+}
+
+#search-button {
+    padding: 6px 20px;
+    background-color: #0079c1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    height: 7%;
+    transition: background-color 0.2s;
+    display: none;
+}
+
+#search-button:hover {
+    background-color: #005e95;
+}
+
+#distance-search {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px solid #ccc;
+}
+
+.distance-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 150px;
+    background-color: white;
+}
+
+#calculate-button {
+    padding: 8px 16px;
+    background-color: #0079c1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+#calculate-button:hover {
+    background-color: #005e95;
+}
+
+#distance-result {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    display: none; /* Hide the distance result text */
+}
+
+html body #viewDiv {
+    position: absolute !important;
+    top: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    overflow: hidden !important;
+    height: calc(100% - 60px) !important; /* Ensure it takes exactly the remaining height */
+}
+
+/* Legend Panel Styles */
+#legend-panel {
+    font-family: Arial, sans-serif;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    transform: translateX(0); /* Default position */
+    border-radius: 4px 0 0 4px;
+}
+
+#legend-panel h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.legend-item {
+    transition: background-color 0.2s ease;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.legend-item:hover {
+    background-color: #f5f5f5;
+}
+
+/* Toggle button styles */
+#legend-toggle {
+    transition: background-color 0.2s ease;
+}
+
+#legend-toggle:hover {
+    background-color: #f0f0f0;
+}
+
+/* Ensure the legend doesn't overlap with map controls */
+.esri-ui-top-right,
+.esri-ui-bottom-right {
+    right: 0 !important; /* Move controls back to the right corner */
+    transition: right 0.3s ease;
+}
+
+/* When legend is hidden, no need to adjust map controls */
+#legend-panel[style*="translateX(250px)"] ~ .esri-view .esri-ui-top-right,
+#legend-panel[style*="translateX(250px)"] ~ .esri-view .esri-ui-bottom-right {
+    right: 0 !important;
+}
+
+/* Ensure hidden legend panel is fully off-screen */
+#legend-panel[style*="transform: translateX"] {
+    transform: translateX(120%) !important;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1435px) {
+    #header-subtitle {
+        display: none !important; /* Hide the subtitle */
+    }
+
+    #legend-panel {
+        width: 200px !important;
+    }
+    
+    .esri-ui-top-right,
+    .esri-ui-bottom-right {
+        right: 0 !important;
+    }
+    
+    #legend-panel[style*="translateX(250px)"] ~ .esri-view .esri-ui-top-right,
+    #legend-panel[style*="translateX(250px)"] ~ .esri-view .esri-ui-bottom-right {
+        right: 0 !important;
+    }
+}

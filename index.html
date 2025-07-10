@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Railway Map</title>
+    <link rel="icon" type="image/png" href="/Pictures/Railway_Router-removebg-preview.png" />
+    <link rel="stylesheet" href="src/style.css" />
+    <!-- Load Calcite components from CDN -->
+    <script type="module" src="https://js.arcgis.com/calcite-components/3.0.3/calcite.esm.js"></script>
+  </head>
+  <body>
+    <div id="header">
+      <div id="header-title-container">
+        <div id="header-logo">
+          <img src="/Pictures/Railway_Router-removebg-preview.png" alt="Railway Router Logo" id="header-logo-img">
+        </div>
+        <h2 id="header-title">Railway Router!</h2>
+      </div>
+      <h3 id="header-subtitle">Explore train travel along the Windsor - Quebec City Corridor!</h3>
+      <div id="header-search">
+        <input type="text" id="search-input" placeholder="Search for a location...">
+        <button id="search-button">Search</button>
+      </div>
+      <div id="distance-search">
+        <select id="origin-select" class="distance-select">
+          <option value="">Select Origin</option>
+        </select>
+        <select id="destination-select" class="distance-select">
+          <option value="">Select Destination</option>
+        </select>
+        <button id="calculate-button">Take Me There!</button>
+        <div id="distance-result"></div>
+      </div>
+    </div>
+    <div id="viewDiv"></div>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
