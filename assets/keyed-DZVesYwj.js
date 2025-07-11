@@ -1,0 +1,5 @@
+import{gk as t,gl as i,gm as o}from"./index-BflxWSe4.js";import{m}from"./ref-BfogK7Cx.js";/**
+ * @license
+ * Copyright 2021 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */const u=t(class extends i{constructor(){super(...arguments),this.key=o}render(r,e){return this.key=r,e}update(r,[e,s]){return e!==this.key&&(m(r),this.key=e),s}});export{u as i};
